@@ -3,7 +3,6 @@ import { Greater } from './greeter'
 import styles from './style.scss';
 import logo from './webpack.png';
 
-console.log(logo);
 
 
 
