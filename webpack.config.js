@@ -2,11 +2,29 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    header: './src/header.js',
+    vendor: ['react', 'react-dom']
+  },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          
+          test: /[\\/]node_modules[\\/]/,
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
   },
 
   mode: 'development',
@@ -23,7 +41,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env', '@babel/preset-react']
           }
         } 
         
