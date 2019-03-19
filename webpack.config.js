@@ -30,6 +30,10 @@ module.exports = {
 
   mode: 'development',
 
+  devServer: {
+    port: 8080
+  },
+
   watch: true,
 
   devtool: 'source-map',
